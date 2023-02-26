@@ -14,12 +14,15 @@ import Faq from './pages/help/Faq'
 import Contact from './pages/help/Contact'
 import NotFound from './pages/NotFound'
 import Careers, { careersLoader } from './pages/careers/Careers'
+import CareerDetails, {
+  careersDetailsLoader,
+} from './pages/careers/CareerDetails'
+import CareerError from './pages/careers/CareerError'
 
 // layouts
 import RootLayout from './layouts/RootLayout'
 import HelpLayout from './layouts/HelpLayout'
 import CareersLayout from './layouts/CareersLayout'
-import CareerDetails, { careersDetailsLoader } from './pages/careers/CareerDetails'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -52,6 +55,7 @@ const router = createBrowserRouter(
         path='careers'
         element={<CareersLayout />}
         loader={careersLoader}
+        errorElement={<CareerError />}
       >
         <Route
           index

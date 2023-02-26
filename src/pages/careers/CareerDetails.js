@@ -13,14 +13,18 @@ export default function CareerDetails() {
       <p>Starting salary: {career.location}</p>
       <p>Location: {career.location}</p>
       <div className='details'>
-        <p>
-          Sit est reprehenderit cupidatat consequat ad ipsum exercitation ea
-          excepteur reprehenderit do. Velit nostrud officia magna aute deserunt
-          enim quis nisi anim voluptate. Elit non reprehenderit mollit sit
-          labore voluptate cupidatat reprehenderit officia. Qui non enim commodo
-          irure minim excepteur eiusmod. Labore cupidatat sint cupidatat velit
-          do et ad sunt voluptate nostrud eu duis.
-        </p>
+        {id <= 7 ? (
+          <p>
+            Sit est reprehenderit cupidatat consequat ad ipsum exercitation ea
+            excepteur reprehenderit do. Velit nostrud officia magna aute
+            deserunt enim quis nisi anim voluptate. Elit non reprehenderit
+            mollit sit labore voluptate cupidatat reprehenderit officia. Qui non
+            enim commodo irure minim excepteur eiusmod. Labore cupidatat sint
+            cupidatat velit do et ad sunt voluptate nostrud eu duis.
+          </p>
+        ) : (
+          <p>No data fetched!!</p>
+        )}
       </div>
     </div>
   )
@@ -29,5 +33,10 @@ export default function CareerDetails() {
 export async function careersDetailsLoader({ params }) {
   const { id } = params
   const response = fetch('http://localhost:4000/careers/' + id)
+
+  if (!(await response).ok) {
+    throw Error("Couldn't find the career")
+  }
+
   return (await response).json()
 }
