@@ -8,7 +8,7 @@ export default function Careers() {
     <div className='careers'>
       {careers.map((career) => (
         <Link
-          to='/help'
+          to={career.id.toString()}
           key={career.id}
         >
           <p>{career.title}</p>
